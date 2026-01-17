@@ -49,6 +49,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/http-queue-manager"
+    "url": "https://github.com/aneuhaus/http-queue-manager.git"
   }
 }
