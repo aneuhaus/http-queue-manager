@@ -323,18 +323,18 @@ export class PostgresStore {
   // ============================================================================
 
   async getRequestsByStatus(
-    status: RequestStatus,
+    status?: RequestStatus,
     limit = 100,
     offset = 0
   ): Promise<StoredRequest[]> {
     const result = await this.pool.query<StoredRequest>(
       `
       SELECT * FROM requests 
-      WHERE status = $1 
+      WHERE ($1::text IS NULL OR status = $1)
       ORDER BY created_at DESC 
       LIMIT $2 OFFSET $3
       `,
-      [status, limit, offset]
+      [status ?? null, limit, offset]
     );
 
     return result.rows;

@@ -20,13 +20,19 @@ export const createResolvers = (queue: QueueManager) => ({
       // "Cheating" is faster for this example.
       
       const store = (queue as any).postgres; 
-      if (args.status) {
-        return await store.getRequestsByStatus(args.status as RequestStatus, args.limit ?? 100, args.offset ?? 0);
-      }
-      // If no status, maybe just return recent? PostgresStore doesn't have "getAll".
-      // Let's default to 'pending' if not specified or implement a getAll in store.
-      // For now, let's just return pending.
-      return await store.getRequestsByStatus('pending', args.limit ?? 100, args.offset ?? 0);
+      const statusParam = args.status ? (args.status as RequestStatus) : undefined;
+      let requests = await store.getRequestsByStatus(statusParam, args.limit ?? 100, args.offset ?? 0);
+
+      return requests.map((req: any) => ({
+        ...req,
+        maxRetries: req.max_retries,
+        createdAt: req.created_at,
+        updatedAt: req.updated_at,
+        completedAt: req.completed_at,
+        scheduledFor: req.scheduled_for,
+        lastAttemptAt: req.last_attempt_at,
+        nextRetryAt: req.next_retry_at,
+      }));
     },
     request: async (_: unknown, args: { id: string }) => {
       const state = await queue.getStatus(args.id);
