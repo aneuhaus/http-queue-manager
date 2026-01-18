@@ -325,16 +325,18 @@ export class PostgresStore {
   async getRequestsByStatus(
     status?: RequestStatus,
     limit = 100,
-    offset = 0
+    offset = 0,
+    host?: string
   ): Promise<StoredRequest[]> {
     const result = await this.pool.query<StoredRequest>(
       `
       SELECT * FROM requests 
       WHERE ($1::text IS NULL OR status = $1)
+        AND ($4::text IS NULL OR url LIKE '%' || $4 || '%')
       ORDER BY created_at DESC 
       LIMIT $2 OFFSET $3
       `,
-      [status ?? null, limit, offset]
+      [status ?? null, limit, offset, host ?? null]
     );
 
     return result.rows;

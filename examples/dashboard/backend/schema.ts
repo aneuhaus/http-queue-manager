@@ -4,7 +4,7 @@ export const typeDefs = `
 
   type Query {
     overallStats: QueueStats!
-    requests(status: String, limit: Int, offset: Int): [StoredRequest!]!
+    requests(status: String, host: String, limit: Int, offset: Int): [StoredRequest!]!
     request(id: ID!): StoredRequest
     backpressure: BackpressureState!
   }

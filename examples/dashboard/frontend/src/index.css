@@ -183,3 +183,119 @@ tr:hover td {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
 }
+
+/* Modal Dialog */
+.modal-dialog {
+  max-width: 800px;
+  width: 90%;
+  padding: 0;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.modal-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: var(--bg-color);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.hover-row:hover td {
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.items-center {
+  align-items: center;
+}
+
+.border-b {
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.max-h-40 {
+  max-height: 10rem;
+}
+
+.bg-red-500\/10 {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.border-l-4 {
+  border-left-width: 4px;
+}
+
+.border-red-500 {
+  border-color: #ef4444;
+}
+
+.text-red-400 {
+  color: #f87171;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
